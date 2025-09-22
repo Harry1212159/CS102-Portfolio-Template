@@ -41,7 +41,7 @@ const TRANSITION_SECTION = {
 }
 
 type ProjectVideoProps = {
-  src?: string
+  src?: string | null
 }
 
 // Main personal page component
@@ -121,7 +121,7 @@ export default function Personal() {
                     </p>
                   </div>
                   <p className="text-zinc-600 dark:text-zinc-400">
-                    {job.start} - {job.end}
+                    {job.start} + {job.end}
                   </p>
                 </div>
               </div>
@@ -207,7 +207,8 @@ function ProjectVideo({ src }: ProjectVideoProps) {
       }}
     >
       <MorphingDialogTrigger>
-        {src?.endsWith('.mp4') ? (
+        {src ? (
+          src.endsWith('.mp4') ? (
           <video
             src={src}
             autoPlay
@@ -221,11 +222,13 @@ function ProjectVideo({ src }: ProjectVideoProps) {
             alt="Project image"
             className="aspect-video w-full cursor-zoom-in rounded-xl object-cover"
           />
-        )}
+        )
+      ): null}
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
         <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          {src?.endsWith('.mp4') ? (
+          {src ? (
+            src.endsWith('.mp4') ? (
             <video
               src={src}
               autoPlay
@@ -239,7 +242,8 @@ function ProjectVideo({ src }: ProjectVideoProps) {
               alt="Project image"
               className="aspect-video h-[50vh] w-full rounded-xl object-cover md:h-[70vh]"
             />
-          )}
+          )
+        ) : null}
         </MorphingDialogContent>
         <MorphingDialogClose
           className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
