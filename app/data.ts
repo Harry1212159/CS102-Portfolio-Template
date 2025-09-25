@@ -29,7 +29,7 @@ type SocialLink = {
 
 export const EMAIL = 'trungnguyenthe1212@gmail.com'
 
-export const WEB_TITLE = 'Name - Personal Website'
+export const WEB_TITLE = 'Nguyen The Trung - Personal Website'
 export const WEB_DESCRIPTION =
   'A personal website showcasing my work and projects.'
 export const FOOTER_COPYRIGHT = '© 2025 Nguyen The Trung.'

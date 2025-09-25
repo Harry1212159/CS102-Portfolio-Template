@@ -12,6 +12,9 @@ import {
 } from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
+import { TextShimmerWave }  from '@/components/ui/text-shimmer-wave'
+import { useState } from 'react'
+
 import {
   PROJECTS,
   WORK_EXPERIENCE,
@@ -44,9 +47,13 @@ type ProjectVideoProps = {
   src?: string | null
 }
 
+
 // Main personal page component
 // This component is responsible for rendering the personal page of the website
 export default function Personal() {
+  const [hoveredID, setHoveredID] = useState<string | null>(null);
+  
+
   return (
     <motion.main
       className="space-y-24"
@@ -79,9 +86,16 @@ export default function Personal() {
                   className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
                   href={project.link}
                   target="_blank"
+                  onMouseEnter={() => setHoveredID(project.name)}   // hover vào project này
+                  onMouseLeave={() => setHoveredID(null)}
                 >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
+                  {hoveredID === project.name ? (
+                    <TextShimmerWave>{project.name}</TextShimmerWave>
+                    ) : (
+                    <span className="text-zinc-900 dark:text-zinc-50">{project.name}</span>
+                    )
+                  }
+
                 </a>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
